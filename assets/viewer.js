@@ -18,7 +18,7 @@ connection.addEventListener('message', e => {
       setTimeout(function () {
         yadl.select('#main-content').removeClass('visible')
       }, length * 1000)
-    } 
+    }
   } else if (event == 'clear') {
     yadl.select('#main-content').removeClass('visible')
   } else {

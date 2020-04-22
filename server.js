@@ -1,9 +1,12 @@
 const express = require('express')
-const app = express()
-require('express-ws')(app)
 const yargs = require('yargs')
-const Presenter = require('./Presenter')
-const Viewer = require('./Viewer')
+const fs = require('fs')
+
+const wsRouter = require('./p2pws-router')
+const app = express()
+
+// Set up express-ws on app (for p2p ws)
+require('express-ws')(app)
 
 let argv = yargs
   .option('address', {
@@ -20,32 +23,13 @@ let argv = yargs
 const HOST = argv.server || 'localhost'
 const PORT = argv.port || '5500'
 
-// Global presenter connection
-const globalPresenter = new Presenter()
-
-// References of active viewer connections
-const viewers = []
+app.use(wsRouter)
 
 // Static assets
 app.use('/assets', express.static('./assets/'))
 
 // Views (presenter and viewer)
 app.use(express.static('./views', { extensions: ['html'] }))
-
-// Websocket route for presenter view
-app.ws('/ws-presenter', function (ws, req) {
-  if (globalPresenter.active) return
-
-  globalPresenter.activate(ws)
-})
-
-// WebSocket route for viewer view
-app.ws('/ws-viewer', function (ws, req) {
-  v = new Viewer(ws, globalPresenter)
-  viewers.push(v)
-
-  ws.on('close', () => viewers.splice(viewers.indexOf(v), 1))
-})
 
 // Error handling
 app.use(function (req, res) {

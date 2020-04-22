@@ -4,8 +4,25 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lower Thirds Viewer</title>
-  <link rel="stylesheet" href="/assets/css/main.css">
+  <style>
+    body {
+      font-family: 'Raleway', 'Calibri', sans-serif;
+      font-size: 30pt;
+      background-color: transparent;
+      color: white;
+    }
+
+    #main-content {
+      opacity: 0;
+      transition: all .4s ease;
+    }
+
+    #main-content.visible {
+      opacity: 1;
+    }
+  </style>
   <script src="/assets/libs/yadl.js"></script>
+  <script src="/assets/libs/client.js"></script>
 </head>
 <body>
   <div id="main-content"></div>

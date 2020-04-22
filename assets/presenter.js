@@ -1,68 +1,44 @@
 ui.init()
+const connection = new Connection(true)
+connection.init()
 
-class Connection extends EventTarget {
-  constructor() {
-    super()
-    this.open = false
-  }
-  /**
-   * Set the state of the connection (open, not open)
-   * @param {Boolean} open Set if the connection is open or not
-   */
-  set(open) {
-    if (this.open !== open) {
-      let event = new Event(open ? 'open' : 'close')
-      this.dispatchEvent(event)
-      this.open = open
-    }
-  }
-}
-
-let ws
-let connectionStatus = new Connection()
-
-function initWebSocket(retry) {
-  // Open websocket to server
-  ws = new WebSocket(`ws://${location.host}/ws-presenter`)
-  if (retry) console.log('Trying to connect...')
-
-  ws.addEventListener('open', function (event) {
-    connectionStatus.set(true)
-  })
-
-  ws.addEventListener('close', function (event) {
-    connectionStatus.set(false)
-    setTimeout(() => initWebSocket(true), 5000)
-  })
-}
-
-initWebSocket()
-
-connectionStatus.addEventListener('open', e => {
+connection.addEventListener('open', e => {
   ui.enable()
   console.log('Connection to server open')
 })
-connectionStatus.addEventListener('close', e => {
+connection.addEventListener('close', e => {
   ui.disable('Connection to server lost. Trying again in 5 seconds.')
   console.log('Connection to server lost.')
 })
 
-let presStarted = false
+const presenter = {}
 
-function startPresentation(textValues) {
-  ws.send(JSON.stringify({
-    event: 'init-presentation',
-    data: textValues
-  }))
+presenter.current = ''
 
-  presStarted = true
-
-  console.log('submitted, ', textValues)
+presenter.show = function (text) {
+  presenter.current = text
+  connection.send({ event: 'show-text', data: text })
 }
 
-function goto(index) {
-  ws.send(JSON.stringify({
-    event: 'goto-slide',
-    data: index
-  }))
+presenter.clear = function () {
+  presenter.current = ''
+  connection.send({ event: 'clear' })
+}
+
+presenter.toggle = function (text) {
+  if (presenter.current) {
+    // Hide
+    presenter.clear()
+  } else {
+    // Show text
+    presenter.show(text)
+  }
+}
+
+presenter.showFor = function (text, length) {
+  presenter.current = text
+  connection.send({ event: 'show-text', data: text, length })
+  setTimeout(function () {
+    presenter.current = ''
+  }, length * 1000)
 }

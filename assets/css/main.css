@@ -1,0 +1,112 @@
+body {
+  margin: 0;
+  background-color: #f1f1f1;
+}
+
+.toast {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: #b7b7b7;
+  transition: all 0.2s ease;
+  opacity: 0;
+  padding: 20px 40px;
+  border-radius: 3px;
+  z-index: 11;
+}
+
+.toast.visible {
+  opacity: 1;
+}
+
+.disabler {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.479);
+  z-index: 10;
+}
+
+.disabler.visible {
+  display: block;
+}
+
+.autocomplete {
+  position: relative;
+  display: inline-block;
+}
+
+input {
+  margin: 10px;
+  margin-bottom: 0;
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+.autocomplete-items {
+  display: none;
+}
+
+.autocomplete-items.visible {
+  display: block;
+  position: absolute;
+  border: 1px solid rgb(104, 103, 103);
+  border-bottom: none;
+  border-top: none;
+  z-index: 99;
+  top: 100%;
+  left: 0;
+  right: 0;
+}
+
+.autocomplete-items div {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #fff;
+  border-bottom: 1px solid #d4d4d4;
+}
+
+.autocomplete-items div:hover,
+.autocomplete-items div.active {
+  background-color: #e9e9e9;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+#slides {
+  margin: 10px;
+  border: 1px solid rgb(103, 103, 103)
+}
+
+#slides > div {
+  padding: 5px;
+}
+
+#slides span, .text-item {
+  font-size: 20pt;
+  font-family: 'Raleway';
+}
+
+#slides button {
+  position: absolute;
+  right: 15px;
+}
+
+.text-item {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 30pt;
+  opacity: 0;
+  transition: all 400ms ease;
+  color: white;
+}
+
+.text-item.visible {
+  opacity: 1;
+}

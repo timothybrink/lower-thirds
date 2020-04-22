@@ -1,0 +1,19 @@
+{
+  "name": "lower-thirds",
+  "version": "1.0.0",
+  "description": "Simple network lower thirds utility",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Timothy Brink <contact@timothybrink.dev>",
+  "license": "MIT",
+  "dependencies": {
+    "@tbrink/yadl": "^1.2.0",
+    "express": "^4.17.1",
+    "express-ws": "^4.0.0",
+    "ws": "^7.2.3",
+    "yargs": "^15.3.1"
+  }
+}

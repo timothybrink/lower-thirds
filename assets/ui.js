@@ -65,7 +65,9 @@ ui.textEditor.newSlot = function () {
     .listen('input', function (e) {
       this.parentElement.classList.remove('empty')
 
-      if (e.inputType == 'insertParagraph') {
+      // the second is necessary for webkit... for some reason, sometimes enters
+      // are considered 'insertText's
+      if (e.inputType == 'insertParagraph' || (e.inputType == 'insertText' && this.children.length)) {
         // Add new slot after this one and focus
         ui.textEditor.addSlot(this.parentElement)
         this.parentElement.nextSibling.children[1].focus()

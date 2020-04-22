@@ -77,6 +77,13 @@ ui.textEditor.newSlot = function () {
         }
       }
     })
+    .listen('keydown', function (e) {
+      if (e.key == 'Backspace' && !this.hasChildNodes()) {
+        e.preventDefault()
+        ui.selectText(this.parentElement.previousSibling.children[1])
+        this.parentElement.remove()
+      }
+    })
   return yadl.create('li')
     .append(yadl.create('button')
       .text('x')

@@ -40,6 +40,10 @@ class ClientManager {
         }
       }
     })
+
+    this.broadcaster.ws.on('close', () => {
+      this.broadcaster = null
+    })
   }
 }
 

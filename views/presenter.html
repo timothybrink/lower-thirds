@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,17 +10,13 @@
   <script src="/assets/ui.js"></script>
   <script src="/assets/libs/client.js"></script>
 </head>
+
 <body>
-  <h1>Presenter</h1>
-  <a href="">refresh</a>
-  <div>
-    <form action="get" name="textInput">
-      <input id="textInput" type="text" placeholder="Enter some text" autocomplete="off">
-      <input type="submit" value="Add">
-    </form>
-    <div id="slides"></div>
-    <button id="start">START</button>
-  </div>
+  <label for="show-length">Text show length (s):</label>
+  <input type="number" name="show-length" id="show-length" value="6" min="0" step="1">
+  <ul id="slots"></ul>
+  <button id="add-button">Add</button>
   <script src="/assets/presenter.js"></script>
 </body>
+
 </html>

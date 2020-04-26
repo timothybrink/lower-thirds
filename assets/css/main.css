@@ -10,14 +10,14 @@ body {
   right: 30px;
   background-color: #333333;
   transition: all 0.2s ease;
-  opacity: 0;
+  display: none;
   padding: 20px 40px;
   border-radius: 3px;
   z-index: 11;
 }
 
 .toast.visible {
-  opacity: 1;
+  display: block
 }
 
 .disabler {

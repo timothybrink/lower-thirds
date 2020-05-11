@@ -1,7 +1,9 @@
 body {
   background-color: #272727;
-  color: white;
+  color: #dadada;
   font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  font-size: 10pt;
 }
 
 .toast {
@@ -36,20 +38,29 @@ body {
 }
 
 button, input {
-  background-color: transparent;
-  border: 1px solid rgb(165, 165, 165);
+  background-color: #4a4a4a;
+  border: none;
   border-radius: 3px;
   padding: 5px 10px;
-  color: white;
-  transition: all .3s ease;
+  color: #dadada;
+  transition: all .1s ease;
+  font-size: 9pt;
+}
+
+input {
+  width: 50px;
 }
 
 button:hover, input:hover {
-  background-color: rgba(255, 255, 255, 0.233);
+  background-color: #949494;
 }
 
-button:active, input:active, input:focus {
-  background-color: rgba(167, 167, 167, 0.233);
+button:active, input:active {
+  background-color: #949494;
+}
+
+input:focus {
+  background-color: #4a4a4a;
 }
 
 button:disabled {
@@ -61,8 +72,7 @@ button:disabled:hover, button:disabled:active {
 }
 
 #slots {
-  margin: 10px;
-  border: 1px solid rgb(103, 103, 103);
+  margin: 0;
   padding: 0;
 }
 
@@ -70,6 +80,7 @@ button:disabled:hover, button:disabled:active {
   list-style: none;
   display: flex;
   flex-flow: row nowrap;
+  margin: 1px 0;
 }
 
 #slots span {
@@ -80,6 +91,7 @@ button:disabled:hover, button:disabled:active {
 #slots button {
   padding: 5px 10px;
   flex: 0 0 auto;
+  margin: 0 1px;
 }
 
 #slots .empty span {
@@ -89,4 +101,27 @@ button:disabled:hover, button:disabled:active {
 .delete {
   border: none;
   opacity: .6;
+}
+
+div.spacer {
+  height: 40px;
+}
+
+.controls {
+  position: fixed;
+  bottom: 2px;
+  left: 2px;
+  right: 2px;
+  padding: 5px;
+  background-color: #383838;
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+span.spacer {
+  flex: 1 0 auto;
+}
+
+.left {
+  flex: 0 0 auto;
 }

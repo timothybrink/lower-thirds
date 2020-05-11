@@ -12,10 +12,14 @@
 </head>
 
 <body>
-  <label for="show-length">Text show length (s):</label>
-  <input type="number" name="show-length" id="show-length" value="6" min="0" step="1">
   <ul id="slots"></ul>
-  <button id="add-button">Add</button>
+  <div class="spacer"></div>
+  <div class="controls">
+    <button id="add-button">Add</button>
+    <span class="spacer"></span>
+    <label class="left" for="show-length">Show for:</label>
+    <input class="left" type="number" name="show-length" id="show-length" value="6" min="0" step="1">
+  </div>
   <script src="/assets/presenter.js"></script>
 </body>
 

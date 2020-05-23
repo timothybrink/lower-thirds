@@ -1,6 +1,7 @@
 const express = require('express')
 const yargs = require('yargs')
 const fs = require('fs')
+const path = require('path')
 
 const wsRouter = require('./p2pws-router')
 const app = express()
@@ -26,10 +27,10 @@ const PORT = argv.port || '5500'
 app.use(wsRouter)
 
 // Static assets
-app.use('/assets', express.static('./assets/'))
+app.use('/assets', express.static(path.join(__dirname, '/assets')))
 
 // Views (presenter and viewer)
-app.use(express.static('./views', { extensions: ['html'] }))
+app.use(express.static(path.join(__dirname, '/views'), { extensions: ['html'] }))
 
 // Error handling
 app.use(function (req, res) {
